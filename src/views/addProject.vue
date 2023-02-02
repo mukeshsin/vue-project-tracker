@@ -2,9 +2,9 @@
 <div class="projectWrapper">
     <form class="form">
         <label class="formLabel">TITLE</label>
-        <input type="text" class="inputInfo" v-model="todo.name" />
+        <input type="text" class="inputInfo" v-model="name" />
         <label class="formLabel">DETAILS</label>
-        <textarea row="10" class="textInfo" v-model="todo.description"></textarea>
+        <textarea row="10" class="textInfo" v-model="description"></textarea>
         <button @click.prevent="formSubmit" class="formBtn">Add Project</button>
     </form>
 
@@ -13,22 +13,23 @@
 
 <script>
 export default {
+    name: "addProject",
+
     data() {
         return {
-            todo: {
-                name: '',
-                description: ''
-            }
-        }
+            a: [],
+        };
     },
+    props: ["todos"],
     methods: {
         formSubmit() {
-
-            console.log(this.todo)
+            this.a = JSON.parse(localStorage.getItem("todoss"));
+            this.newTodo.id = this.a.length;
+            this.a.push(this.newTodo);
+            localStorage.setItem("todoss", JSON.stringify(this.a));
         },
     },
-
-}
+};
 </script>
 
 <style>
