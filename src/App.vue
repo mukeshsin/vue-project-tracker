@@ -7,17 +7,8 @@
 </template>
 
 <script>
-import {
-    todoData
-} from './components/todoData'
-
 export default {
     name: 'app',
-    lists: [todoData],
-
-    mounted() {
-        localStorage.setItem("todoLists", JSON.stringify(this.todoList));
-    }
 
 }
 </script>

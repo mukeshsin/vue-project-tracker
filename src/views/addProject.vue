@@ -2,34 +2,37 @@
 <div class="projectWrapper">
     <form class="form">
         <label class="formLabel">TITLE</label>
-        <input type="text" class="inputInfo" v-model="name" />
+        <input type="text" class="inputInfo" v-model="newTodo.name" />
         <label class="formLabel">DETAILS</label>
-        <textarea row="10" class="textInfo" v-model="description"></textarea>
+        <textarea row="10" class="textInfo" v-model="newTodo.description"></textarea>
         <button @click.prevent="formSubmit" class="formBtn">Add Project</button>
     </form>
-
 </div>
 </template>
 
 <script>
+import {
+    todoMixin
+} from '../components/todoMixin'
 export default {
     name: "addProject",
-
+    mixins: [todoMixin],
     data() {
-        return {
-            a: [],
-        };
+        return {}
     },
-    props: ["todos"],
+
     methods: {
         formSubmit() {
-            this.a = JSON.parse(localStorage.getItem("todoss"));
-            this.newTodo.id = this.a.length;
-            this.a.push(this.newTodo);
-            localStorage.setItem("todoss", JSON.stringify(this.a));
-        },
-    },
-};
+
+            this.todos.push(this.newTodo);
+            this.newTodo = {
+                name: '',
+                description: ''
+            };
+        }
+    }
+
+}
 </script>
 
 <style>
