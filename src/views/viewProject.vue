@@ -59,6 +59,8 @@ export default {
 
     computed: {
         filteredTodos() {
+            if (this.todos.length === 0)
+                return [];
             if (this.status === "all") {
                 return this.todos;
             } else if (this.status === "completed") {
@@ -68,6 +70,7 @@ export default {
             }
         },
     },
+
     methods: {
         viewAll() {
             this.status = "all";
@@ -83,9 +86,13 @@ export default {
             this.todos[key].isComplete = !this.todos[key].isComplete;
         },
         deleteTask(key) {
-            this.todos = this.todos.filter((todo) => todo.id != key);
-            this.todos = this.todos.filter((todo) => todo.id != key);
+            if (this.todos.length === 1 && this.todos[0].id === key) {
+                // set filter option to disabled,
+            } else {
+                this.todos = this.todos.filter((todo) => todo.id != key);
+            }
         },
+
         updateTask(key) {
             this.showForm = true;
             this.newTodo.id = key;
@@ -106,6 +113,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .viewBtn {
     padding: 10px;
     color: white;
@@ -140,7 +149,9 @@ export default {
 
 .wrap {
     border: 8px solid grey;
-    margin-top: 5px;
+    margin-top: 10px;
+    width: 80%;
+    margin: 5px auto;
 }
 
 .viewproject {
