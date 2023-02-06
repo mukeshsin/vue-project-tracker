@@ -1,10 +1,10 @@
 <template>
 <div class="mainContainer">
-<nav>
-    <router-link to="/">Projects</router-link> |
-    <router-link to="/addProject">Add a New Project</router-link>
-</nav>
-<router-view />
+    <nav class="nav-size-adjust">
+        <router-link class="nav-link" to="/">Projects</router-link>
+        <router-link class="nav-link" to="/addProject">Add a New Project</router-link>
+    </nav>
+    <router-view />
 </div>
 </template>
 
@@ -16,9 +16,11 @@ export default {
 </script>
 
 <style>
-.mainContainer{
-    background-color:#f2f2f2;
+.mainContainer {
+    background-color: #f2f2f2;
     width: 80%;
+    padding-top: 12px;
+    padding-bottom:23px;
 }
 
 #app {
@@ -33,20 +35,26 @@ export default {
     font-size: 25px;
 }
 
-nav {
-    padding:2px;
+.nav-size-adjust{
+    font-size:19px;
+    color:#a09e9b
+}
+
+.nav-link {
+    margin-right: 15px;
+    text-decoration: none;
 
 }
 
 nav a {
     font-weight: bold;
-    color: #2c3e50;
-    text-decoration: none;
+    color: #d2d4d5;
+
 }
 
 nav a.router-link-exact-active {
-    color: #42b983;
-    text-decoration: none;
-
+    border: 1px, solid, #42b983;
+    border-bottom: 2px solid #42b983;
+  
 }
 </style>

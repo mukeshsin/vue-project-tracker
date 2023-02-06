@@ -1,32 +1,36 @@
 <template>
 <div class="projectContainer">
     <div class="viewproject" v-show="!showForm">
-        <div class="allBtn">
-            <button @click.prevent="viewAll" class="viewBtn">VIEW ALL</button>
-            <button @click.prevent="completed" class="completeBtn">COMPLETED</button>
-            <button @click.prevent="ongoing" class="ongoingBtn">ONGOING</button>
+        <div class="allLink">
+            <a @click.prevent="viewAll" class="viewLink">VIEW ALL</a>
+            <a @click.prevent="completed" class="completeLink">COMPLETED</a>
+            <a @click.prevent="ongoing" class="ongoingLink">ONGOING</a>
         </div>
 
-        <div v-for="todo in filteredTodos" :key="todo.id" class="wrap">
-            <div class="border-1" :class="todo.isComplete ? 'comp' : 'incomp'"></div>
-            <h1 class="todoHead">{{ todo.name }}</h1>
+        <div v-for="todo in filteredTodos" :key="todo.id" class="wrap" :class="todo.isComplete ? 'comp' : 'incomp'">
+            <div class="wrap-header-component">
+                <h1 class="todoHead" @click="showDescription(filteredTodos.indexOf(todo))">
+                    {{ todo.name }}
+                </h1>
 
-            <div class="font-icon">
-                <div class="icon" :class="todo.isComplete ? 'iconComp' : 'iconIncomp'" @click="taskCheck(filteredTodos.indexOf(todo))">
-                    <i class="fa-solid fa-check"></i>
-                </div>
-                <div class="icon" @click="updateTask(filteredTodos.indexOf(todo))">
-                    <i class="fa-sharp fa-solid fa-pen"></i>
-                </div>
-                <div class="icon" @click="deleteTask(todo.id)">
-                    <i class="fa-solid fa-trash"></i>
+                <div class="font-icon">
+                    <div class="icon" :class="todo.isComplete ? 'iconComp' : 'iconIncomp'" @click="taskCheck(filteredTodos.indexOf(todo))">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <div class="icon" @click="updateTask(filteredTodos.indexOf(todo))">
+                        <i class="fa-sharp fa-solid fa-pen"></i>
+                    </div>
+                    <div class="icon" @click="deleteTask(todo.id)">
+                        <i class="fa-solid fa-trash"></i>
+                    </div>
                 </div>
             </div>
-            <div class="border-2" :class="todo.isComplete ? 'comp' : 'incomp'"></div>
-            <p class="todoPara">{{ todo.description }}</p>
-
+            <p v-if="todo.showDescription" class="todoPara">
+                {{ todo.description }}
+            </p>
         </div>
     </div>
+
     <div class="formWrapper" v-show="showForm">
         <form class="form">
             <label class="formLabel">TITLE</label>
@@ -53,14 +57,12 @@ export default {
         return {
             status: "all",
             showForm: false,
-
         };
     },
 
     computed: {
         filteredTodos() {
-            if (this.todos.length === 0)
-                return [];
+            if (this.todos.length === 0) return [];
             if (this.status === "all") {
                 return this.todos;
             } else if (this.status === "completed") {
@@ -82,6 +84,10 @@ export default {
             this.status = "ongoing";
         },
 
+        showDescription(key) {
+            this.todos[key].showDescription = !this.todos[key].showDescription;
+        },
+
         taskCheck(key) {
             this.todos[key].isComplete = !this.todos[key].isComplete;
         },
@@ -99,7 +105,6 @@ export default {
             this.newTodo.name = this.todos[key].name;
             this.newTodo.description = this.todos[key].description;
             this.newTodo.isComplete = this.todos[key].isComplete;
-
         },
 
         updateTodo(key) {
@@ -113,45 +118,95 @@ export default {
 </script>
 
 <style scoped>
+.allLink {
+    padding-bottom: 10px;
 
-
-.viewBtn {
-    padding: 10px;
-    color: white;
-    background-color: blue;
-    margin-right: 10px;
-    border-radius: 5px;
 }
 
-.completeBtn {
-    padding: 10px;
-    color: white;
-    background-color: blue;
-    margin-right: 10px;
+.viewLink {
+    padding: 8px;
+    color: #a09e9b;
+    float: left;
     border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    margin-left: 9%;
+    font-weight: bold;
 }
 
-.ongoingBtn {
-    padding: 10px;
-    color: white;
-    background-color: blue;
-    margin-right: 10px;
+.completeLink {
+    padding: 8px;
+    color:#a09e9b;
+    float: left;
     border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.ongoingLink {
+    padding: 8px;
+    color:#a09e9b;
+    float: left;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.viewLink:hover {
+    color: black;
+}
+
+.completeLink:hover {
+    color: black;
+}
+
+.ongoingLink:hover {
+    color: black;
 }
 
 .todoHead {
     font-size: 18px;
+    float: left;
+    margin-left: 25px;
+    margin-top:30px;
+    font-weight:Bold;
+    color:#a09e9b
+    
 }
 
 .todoPara {
-    font-size: 22px;
+    font-size: 17px;
+    margin-right: 15px;
+    padding: 15px;
 }
 
 .wrap {
-    border: 8px solid grey;
+    background-color: white;
     margin-top: 10px;
     width: 80%;
     margin: 5px auto;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    border-left: 4px solid #fff;
+    min-height: 70px;
+}
+
+.wrap.comp {
+    border-color: green;
+}
+
+.wrap.incomp {
+    border-color: red;
+}
+
+.wrap .wrap-header-component {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .viewproject {
@@ -161,14 +216,17 @@ export default {
 }
 
 .icon {
-    font-size: 30px;
+    font-size: 20px;
     color: #959da1;
-    margin-right: 70px;
     float: right;
 }
 
 .font-icon {
-    margin-top: 40px;
+    margin: 0 1rem;
+}
+
+.font-icon i {
+    padding: 8px;
 }
 
 .i {
@@ -185,6 +243,7 @@ export default {
     display: flex;
     border-radius: 10px;
     border: 8px solid #f2f2f2;
+    border-radius: 18px;
 }
 
 .inputInfo {
@@ -216,25 +275,18 @@ export default {
 }
 
 .formBtn {
-    width: 200px;
+
+    width: 150px;
     height: 30px;
     align-items: center;
     margin-left: 38%;
     margin-top: 30px;
     margin-bottom: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     border: none;
-    background-color: rgb(72, 155, 130);
+    background-color: #00b486;
     color: white;
-    font-size: 22px;
-}
-
-.comp {
-    background-color: green;
-}
-
-.incomp {
-    background-color: crimson;
+    font-size: 18px;
 }
 
 .iconComp {
@@ -246,15 +298,15 @@ export default {
 }
 
 .border-1 {
-    width: 7px;
-    height: 100%;
+    width: 10px;
+    height: 90px;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
 .border-2 {
     width: 8px;
-    height: 105%;
+    height: 90px;
     border-bottom-left-radius: 5px;
     margin-top: -5px;
 }

@@ -3,33 +3,33 @@ export const todoMixin = {
     return {
       todos: [
         {
-          name: "Todo-tracker1",
+          name: "Create new homepage banner",
           description:
-            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias tenetur fugit voluptates reiciendis nemo ullam, illum eaque veritatis maiores nobis.",
+            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias tenetur fugit voluptates reiciendis nemo ullam, illum eaque veritatis maiores nobis.Lorem ipsum dolor sit, amet consectetur adipisicing elitLorem ipsum dolor sit, amet consectetur adipisicing.",
           isComplete: true,
           showDes: false,
           id: 1,
         },
         {
-          name: "Todo-tracker2",
-          description:
-            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias tenetur fugit voluptates reiciendis nemo ullam, illum eaque veritatis maiores nobis.",
+          name: "Make marketing email",
+                    description:
+            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias tenetur fugit voluptates reiciendis nemo ullam, illum eaque veritatis maiores nobis.Lorem ipsum dolor sit, amet consectetur adipisicing elitLorem ipsum dolor sit, amet consectetur adipisicing.",
           isComplete: false,
           showDes: false,
           id: 2,
         },
         {
-          name: "Todo-tracker3",
-          description:
-            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias tenetur fugit voluptates reiciendis nemo ullam, illum eaque veritatis maiores nobis.",
+          name: "Update promo links",
+                    description:
+            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias tenetur fugit voluptates reiciendis nemo ullam, illum eaque veritatis maiores nobis.Lorem ipsum dolor sit, amet consectetur adipisicing elitLorem ipsum dolor sit, amet consectetur adipisicing.",
           isComplete: true,
           showDes: false,
           id: 3,
         },
         {
-          name: "Todo-tracker4",
-          description:
-            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias tenetur fugit voluptates reiciendis nemo ullam, illum eaque veritatis maiores nobis.",
+          name: "Make QR code",
+                    description:
+            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Alias tenetur fugit voluptates reiciendis nemo ullam, illum eaque veritatis maiores nobis.Lorem ipsum dolor sit, amet consectetur adipisicing elitLorem ipsum dolor sit, amet consectetur adipisicing.",
           isComplete: false,
           showDes: false,
           id: 4,
