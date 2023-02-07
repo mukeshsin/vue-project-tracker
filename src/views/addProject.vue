@@ -18,7 +18,9 @@ export default {
     name: "addProject",
     mixins: [todoMixin],
     data() {
-        return {}
+        return {
+           
+        }
     },
 
     methods: {
@@ -30,7 +32,8 @@ export default {
 
             });
             console.log(this.todos.length)
-
+            localStorage.setItem("todos", JSON.stringify(this.todos));
+            
 
         }
     }

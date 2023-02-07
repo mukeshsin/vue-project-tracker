@@ -60,6 +60,12 @@ export default {
         };
     },
 
+    mounted() {
+        if (localStorage.getItem("todos")) {
+            this.todos = JSON.parse(localStorage.getItem("todos"));
+        }
+    },
+
     computed: {
         filteredTodos() {
             if (this.todos.length === 0) return [];
@@ -90,6 +96,7 @@ export default {
 
         taskCheck(key) {
             this.todos[key].isComplete = !this.todos[key].isComplete;
+            localStorage.setItem("todos", JSON.stringify(this.todos));
         },
         deleteTask(key) {
             if (this.todos.length === 1 && this.todos[0].id === key) {
@@ -97,6 +104,7 @@ export default {
             } else {
                 this.todos = this.todos.filter((todo) => todo.id != key);
             }
+            localStorage.setItem("todos", JSON.stringify(this.todos));
         },
 
         updateTask(key) {
@@ -105,6 +113,7 @@ export default {
             this.newTodo.name = this.todos[key].name;
             this.newTodo.description = this.todos[key].description;
             this.newTodo.isComplete = this.todos[key].isComplete;
+
         },
 
         updateTodo(key) {
@@ -112,6 +121,7 @@ export default {
             key = this.newTodo.id;
             this.todos[key].name = this.newTodo.name;
             this.todos[key].description = this.newTodo.description;
+            localStorage.setItem("todos", JSON.stringify(this.todos));
         },
     },
 };
@@ -136,7 +146,7 @@ export default {
 
 .completeLink {
     padding: 8px;
-    color:#a09e9b;
+    color: #a09e9b;
     float: left;
     border-radius: 5px;
     border: none;
@@ -146,7 +156,7 @@ export default {
 
 .ongoingLink {
     padding: 8px;
-    color:#a09e9b;
+    color: #a09e9b;
     float: left;
     border-radius: 5px;
     border: none;
@@ -170,10 +180,9 @@ export default {
     font-size: 18px;
     float: left;
     margin-left: 25px;
-    margin-top:30px;
-    font-weight:Bold;
-    color:#a09e9b
-    
+    margin-top: 30px;
+    font-weight: Bold;
+    color: #a09e9b
 }
 
 .todoPara {
