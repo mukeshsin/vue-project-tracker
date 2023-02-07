@@ -5,6 +5,7 @@
         <input type="text" class="inputInfo" v-model="newTodo.name" />
         <label class="formLabel">DETAILS</label>
         <textarea row="10" class="textInfo" v-model="newTodo.description"></textarea>
+        <label class=" validateError">{{ error }}</label>
         <button @click.prevent="formSubmit" class="formBtn">Add Project</button>
     </form>
 </div>
@@ -19,21 +20,31 @@ export default {
     mixins: [todoMixin],
     data() {
         return {
-           
+            error: "",
+
         }
     },
 
     methods: {
         formSubmit() {
-            console.log(this.todos.length)
-            this.todos.push({
-                ...this.newTodo,
-                id: this.todos.length + 1
+            if (!this.newTodo.name) {
+                this.error = 'Project title cannot be empty'
+                return
+            }
+            if (!this.newTodo.description) {
+                this.error = 'Project description cannot be empty'
+                return
+            } else {
+                this.error = '',
+                    this.todos.push({
+                        ...this.newTodo,
+                        id: this.todos.length + 1
 
-            });
-            console.log(this.todos.length)
+                    });
+            }
+
             localStorage.setItem("todos", JSON.stringify(this.todos));
-            
+            this.$router.push('/');
 
         }
     }
@@ -58,9 +69,23 @@ export default {
 
 .inputInfo {
 
+    margin-bottom: 10px;
     border: none;
-    border-bottom: 1px solid #e5e4e3;
-    margin-bottom: 10px
+    border-bottom: 1px solid #bec2c4;
+
+}
+
+.inputInfo:focus {
+    outline: none;
+}
+
+
+.validateError {
+    color: red;
+    font-size: 18px;
+    margin-top: 10px;
+    font-family: arial;
+
 }
 
 .form {
@@ -82,12 +107,11 @@ export default {
 
 }
 
-.textarea {
-    width: 90%;
+.textInfo {
     border-color: #bec2c4;
     margin-top: 10px;
     font-size: 20px;
-    color: #e5e4e3;
+
 }
 
 .formBtn {

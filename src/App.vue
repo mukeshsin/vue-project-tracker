@@ -9,10 +9,8 @@
 </template>
 
 <script>
-
 export default {
     name: 'app',
-   
 
 }
 </script>
@@ -22,7 +20,7 @@ export default {
     background-color: #f2f2f2;
     width: 80%;
     padding-top: 12px;
-    padding-bottom:23px;
+    padding-bottom: 23px;
 }
 
 #app {
@@ -37,14 +35,15 @@ export default {
     font-size: 25px;
 }
 
-.nav-size-adjust{
-    font-size:19px;
-    color:#a09e9b
+.nav-size-adjust {
+    font-size: 19px;
+    color: #a09e9b
 }
 
 .nav-link {
     margin-right: 15px;
     text-decoration: none;
+  
 
 }
 
@@ -55,8 +54,7 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-    border: 1px, solid, #42b983;
-    border-bottom: 2px solid #42b983;
-  
+border-bottom: 2px solid #42b983;
+
 }
 </style>

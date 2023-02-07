@@ -37,6 +37,7 @@
             <input type="text" class="inputInfo" v-model="newTodo.name" />
             <label class="formLabel">DETAILS</label>
             <textarea row="10" class="textInfo" v-model="newTodo.description"></textarea>
+            <label class=" validateError">{{ error }}</label>
             <button @click.prevent="updateTodo" class="formBtn">
                 Update Project
             </button>
@@ -57,6 +58,7 @@ export default {
         return {
             status: "all",
             showForm: false,
+            error: ""
         };
     },
 
@@ -92,6 +94,7 @@ export default {
 
         showDescription(key) {
             this.todos[key].showDescription = !this.todos[key].showDescription;
+
         },
 
         taskCheck(key) {
@@ -108,28 +111,47 @@ export default {
         },
 
         updateTask(key) {
+
             this.showForm = true;
             this.newTodo.id = key;
             this.newTodo.name = this.todos[key].name;
             this.newTodo.description = this.todos[key].description;
             this.newTodo.isComplete = this.todos[key].isComplete;
-
         },
-
         updateTodo(key) {
-            this.showForm = false;
-            key = this.newTodo.id;
-            this.todos[key].name = this.newTodo.name;
-            this.todos[key].description = this.newTodo.description;
-            localStorage.setItem("todos", JSON.stringify(this.todos));
-        },
+            if (!this.newTodo.name) {
+                this.error = 'Project title cannot be empty'
+                return
+            }
+            if (!this.newTodo.description) {
+                this.error = 'Project description cannot be empty'
+                return
+            } else {
+                this.error = ''
+                this.showForm = false;
+                key = this.newTodo.id;
+                this.todos[key].name = this.newTodo.name;
+                this.todos[key].description = this.newTodo.description;
+                localStorage.setItem("todos", JSON.stringify(this.todos));
+            }
+        }
+
     },
-};
+
+}
 </script>
 
 <style scoped>
 .allLink {
     padding-bottom: 10px;
+
+}
+
+.validateError {
+    color: red;
+    font-size: 18px;
+    margin-top: 10px;
+    font-family: arial;
 
 }
 
@@ -180,9 +202,9 @@ export default {
     font-size: 18px;
     float: left;
     margin-left: 25px;
-    margin-top: 30px;
-    font-weight: Bold;
-    color: #a09e9b
+    margin-top: 27px;
+    font-weight: bolder;
+    color: black
 }
 
 .todoPara {
@@ -225,7 +247,7 @@ export default {
 }
 
 .icon {
-    font-size: 20px;
+    font-size: 19px;
     color: #959da1;
     float: right;
 }
@@ -236,6 +258,7 @@ export default {
 
 .font-icon i {
     padding: 8px;
+    margin-top: 25px
 }
 
 .i {
@@ -253,34 +276,47 @@ export default {
     border-radius: 10px;
     border: 8px solid #f2f2f2;
     border-radius: 18px;
+
 }
 
 .inputInfo {
+
+    margin-bottom: 10px;
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #bec2c4;
+
 }
+
+.inputInfo:focus {
+    outline: none;
+}
+
 
 .form {
     display: flex;
     flex-direction: column;
     margin-top: 40px;
-    width: 90%;
+    width: 80%;
     margin-bottom: 30px;
-    margin-left: 60px;
+    margin-left: 70px;
+    border-radius: 16px;
+
 }
 
 .formLabel {
-    color: #959da1;
-    font-size: 22px;
+    color: #e5e4e3;
+    font-size: 18px;
     margin-bottom: 10px;
+    font-weight: 700;
+
 }
 
-.textarea {
-    width: 90%;
+.textInfo {
+
     border-color: #bec2c4;
     margin-top: 10px;
     font-size: 20px;
-    color: gray;
+
 }
 
 .formBtn {
@@ -288,14 +324,14 @@ export default {
     width: 150px;
     height: 30px;
     align-items: center;
-    margin-left: 38%;
+    margin-left: 41%;
     margin-top: 30px;
     margin-bottom: 20px;
     border-radius: 10px;
     border: none;
     background-color: #00b486;
     color: white;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 .iconComp {
