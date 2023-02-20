@@ -22,6 +22,7 @@ export default {
         return {
             error: "",
 
+
         }
     },
 
@@ -36,14 +37,16 @@ export default {
                 return
             } else {
                 this.error = '',
+                this.todos= JSON.parse(localStorage.getItem("todos"))
                     this.todos.push({
                         ...this.newTodo,
-                        id: this.todos.length + 1
+                        id: this.todos.length+1
 
                     });
             }
 
             localStorage.setItem("todos", JSON.stringify(this.todos));
+            console.log(this.todos.length+1)
             this.$router.push('/');
 
         }
@@ -78,7 +81,6 @@ export default {
 .inputInfo:focus {
     outline: none;
 }
-
 
 .validateError {
     color: red;
@@ -116,16 +118,16 @@ export default {
 
 .formBtn {
 
-    width: 150px;
+    width: 130px;
     height: 30px;
     align-items: center;
     margin-left: 41%;
     margin-top: 30px;
     margin-bottom: 20px;
-    border-radius: 10px;
+    border-radius: 7px;
     border: none;
-    background-color: #00b486;
-    color: white;
-    font-size: 20px;
+    background-color: #00b587;
+    color: whitesmoke;
+    font-size: 17px;
 }
 </style>

@@ -43,7 +43,6 @@ export default {
 .nav-link {
     margin-right: 15px;
     text-decoration: none;
-  
 
 }
 
@@ -53,8 +52,8 @@ nav a {
 
 }
 
-nav a.router-link-exact-active {
-border-bottom: 2px solid #42b983;
+ .router-link-exact-active {
+    border-bottom: 2px solid #42b983;
 
 }
 </style>

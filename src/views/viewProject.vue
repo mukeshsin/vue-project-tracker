@@ -161,6 +161,7 @@ export default {
     float: left;
     border-radius: 5px;
     border: none;
+    cursor: pointer;
     font-size: 14px;
     margin-left: 9%;
     font-weight: bold;
@@ -185,18 +186,18 @@ export default {
     font-size: 14px;
     font-weight: bold;
 }
+.viewLink:active{
+    color:black;
+}
 
-.viewLink:hover {
+.completeLink:active {
     color: black;
 }
 
-.completeLink:hover {
+.ongoingLink:active{
     color: black;
 }
 
-.ongoingLink:hover {
-    color: black;
-}
 
 .todoHead {
     font-size: 18px;
@@ -218,7 +219,7 @@ export default {
     margin-top: 10px;
     width: 80%;
     margin: 5px auto;
-    border-radius: 10px;
+    border-radius: 4px;
     display: flex;
     flex-direction: column;
     border-left: 4px solid #fff;
@@ -321,17 +322,17 @@ export default {
 
 .formBtn {
 
-    width: 150px;
+    width: 130px;
     height: 30px;
     align-items: center;
     margin-left: 41%;
     margin-top: 30px;
     margin-bottom: 20px;
-    border-radius: 10px;
+    border-radius: 7px;
     border: none;
-    background-color: #00b486;
-    color: white;
-    font-size: 20px;
+    background-color:#00b587;
+    color: whitesmoke;
+    font-size: 17px;
 }
 
 .iconComp {
